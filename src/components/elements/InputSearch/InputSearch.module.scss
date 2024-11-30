@@ -1,0 +1,39 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  position: relative;
+  width: 700px;
+}
+
+.input {
+  background-color: #fff;
+  border: none;
+  outline: none;
+
+  width: 100%;
+
+  padding: 20px 30px 20px 70px;
+
+  font-size: 18px;
+
+  border-radius: 40px;
+}
+
+.iconSearch {
+  cursor: pointer;
+
+  position: absolute;
+  left: 20px;
+  top: 50%;
+
+  padding: 8px;
+  border-radius: 50%;
+
+  transform: translateY(-50%);
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: rgba($color: $blue, $alpha: 0.1);
+  }
+}

@@ -1,0 +1,59 @@
+@use "../../../styles/vars.scss" as *;
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: $blue;
+  height: 100vh;
+
+  padding: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: rgba($color: rgb(128, 157, 254), $alpha: 1);
+  }
+}
+
+.linkIcon {
+  color: #fff;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.logout {
+  cursor: pointer;
+  background-color: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: rgba($color: rgb(255, 48, 48), $alpha: 1);
+  }
+}

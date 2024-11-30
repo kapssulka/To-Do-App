@@ -1,0 +1,63 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+.left {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(73, 114, 254);
+  background: linear-gradient(
+    337deg,
+    rgba(73, 114, 254, 1) 0%,
+    rgba(115, 180, 240, 0.9304096638655462) 100%
+  );
+  border-radius: 0 0 10% 0;
+
+  img {
+    opacity: 0.8;
+    max-width: 50%;
+  }
+}
+
+.copy {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.5dvh;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+
+  padding: 0 50px;
+
+  padding-top: 25%;
+}
+
+.wrapperForm {
+  max-width: 450px;
+  width: 100%;
+
+  border-radius: 30px;
+  background-color: $light-grey;
+
+  -webkit-box-shadow: 0px 1px 23px 0px rgba(0, 0, 0, 0.2);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 30px;
+  padding: 20px 25px 0;
+}

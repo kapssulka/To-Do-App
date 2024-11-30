@@ -1,0 +1,17 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  padding: 15px;
+
+  transition: all 0.2s ease-in-out;
+  border-radius: 50%;
+  &:hover {
+    color: #fff;
+    background-color: rgba($color: $blue, $alpha: 1);
+  }
+}

@@ -1,3 +1,4 @@
+@use "../styles/vars.scss" as *;
 *,
 *::before,
 *::after {
@@ -9,4 +10,15 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+
+  background-color: $light-grey;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  outline: none;
+  border: none;
 }

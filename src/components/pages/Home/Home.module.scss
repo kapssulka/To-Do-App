@@ -1,0 +1,15 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 20fr;
+}
+
+.aside {
+  background-color: $blue;
+  height: 100vh;
+}
+
+.content {
+  padding: 0 50px;
+}
