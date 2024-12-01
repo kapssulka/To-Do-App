@@ -1,0 +1,31 @@
+@use "../../../styles/vars.scss" as *;
+
+.title {
+  display: inline-block;
+
+  padding: 10px 20px;
+  border-radius: 30px;
+
+  background-color: rgba($color: $blue, $alpha: 0.1);
+  color: $blue;
+}
+
+.inProgress {
+  background-color: rgba($color: #fb04ff, $alpha: 0.1);
+  color: #fb04ff;
+}
+
+.isComplited {
+  background-color: rgba($color: #2aff04, $alpha: 0.1);
+  color: #2aff04;
+}
+
+.isTotal {
+  background-color: rgba($color: $blue, $alpha: 0.1);
+  color: $blue;
+}
+
+.isWaiting {
+  background-color: rgba($color: #ff8204, $alpha: 0.1);
+  color: #ff8204;
+}

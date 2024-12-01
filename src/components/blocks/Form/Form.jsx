@@ -16,7 +16,7 @@ export default function Form({ isRegister = false }) {
       <Input placeholder="Enter your email" label="Email" type="email" />
       <Input placeholder="Enter your password" label="Password" />
 
-      <Button>Sign In</Button>
+      <Button className={classes.button}>Sign In</Button>
     </form>
   );
 }

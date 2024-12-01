@@ -1,0 +1,45 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 1px 23px 0px rgba(0, 0, 0, 0.1);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.openMenu {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 7px;
+
+  transition: all 0.2s ease-in-out;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba($color: $blue, $alpha: 0.1);
+  }
+}
+
+.description {
+  margin-top: 30px;
+}
+
+.subTasks {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+
+  align-self: self-end;
+
+  margin-top: 15px;
+}

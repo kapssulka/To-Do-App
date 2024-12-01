@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Home.module.scss";
 import Header from "../../blocks/Header/Header";
 import Aside from "../../blocks/Aside/Aside";
+import ProjectsBoard from "../ProjectsBoard/ProjectsBoard";
 
 export default function Home() {
   return (
@@ -9,7 +10,10 @@ export default function Home() {
       <Aside />
       <div className={classes.content}>
         <Header />
-        <main></main>
+
+        <main>
+          <ProjectsBoard />
+        </main>
       </div>
     </div>
   );

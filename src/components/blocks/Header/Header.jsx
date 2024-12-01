@@ -14,7 +14,7 @@ export default function Header() {
           <RxHamburgerMenu size={30} />
         </IconHoverWrapper>
 
-        <InputSearch />
+        <InputSearch placeholder="Enter projects or tasks" />
       </div>
 
       <UserMenu />
