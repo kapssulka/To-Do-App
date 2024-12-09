@@ -1,0 +1,56 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+
+  margin: 50px 0;
+
+  :global {
+    .CircularProgressbar {
+      position: relative;
+      z-index: 2;
+      background-color: transparent;
+      .CircularProgressbar-path {
+        stroke: $blue;
+        stroke-width: 3px;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.5s ease;
+      }
+
+      .CircularProgressbar-trail {
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+    }
+  }
+}
+
+.circle {
+  max-width: 91%;
+}
+
+.bgCircle {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  border: 60px solid rgba($color: $blue, $alpha: 0.1);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.text {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 42px;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

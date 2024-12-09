@@ -1,0 +1,23 @@
+@use "../../../styles/vars.scss" as *;
+.wrapper {
+  max-width: 50%;
+  min-width: 600px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 30px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+
+  border-bottom: 3px solid $light-grey;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,15 @@
+@use "../../../styles/vars.scss" as *;
+
+.backTo {
+  display: flex;
+  padding: 10px;
+  border-radius: 50%;
+
+  background-color: transparent;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: rgba($color: $blue, $alpha: 0.1);
+  }
+}

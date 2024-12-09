@@ -1,0 +1,76 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  width: 100%;
+  padding: 15px 10px;
+  background-color: rgba($color: #1245ad, $alpha: 0.1);
+  border-radius: 10px;
+
+  &.total {
+    background-color: rgba($color: $blue, $alpha: 0.1);
+  }
+  &.progress {
+    background-color: rgba($color: $status-progress, $alpha: 0.1);
+  }
+  &.waiting {
+    background-color: rgba($color: $status-waiting, $alpha: 0.1);
+  }
+  &.complited {
+    background-color: rgba($color: $status-complited, $alpha: 0.1);
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 16px;
+  color: rgb(57, 57, 57);
+
+  margin-bottom: 5px;
+}
+
+.count {
+  position: relative;
+  font-family: Consolas, "Courier New", monospace;
+
+  padding: 0 10px;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  padding-left: 10px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    transform: translateY(-50%);
+    height: 80%;
+    width: 4px;
+    background-color: $blue;
+    border-radius: 10px;
+  }
+
+  &.total {
+    &:before {
+      background-color: rgba($color: $blue, $alpha: 1);
+    }
+  }
+  &.progress {
+    &:before {
+      background-color: rgba($color: $status-progress, $alpha: 1);
+    }
+  }
+  &.waiting {
+    &:before {
+      background-color: rgba($color: $status-waiting, $alpha: 1);
+    }
+  }
+  &.complited {
+    &:before {
+      background-color: rgba($color: $status-complited, $alpha: 1);
+    }
+  }
+}

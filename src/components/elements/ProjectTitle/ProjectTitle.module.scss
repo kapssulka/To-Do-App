@@ -11,13 +11,13 @@
 }
 
 .inProgress {
-  background-color: rgba($color: #fb04ff, $alpha: 0.1);
-  color: #fb04ff;
+  background-color: rgba($color: $status-progress, $alpha: 0.1);
+  color: $status-progress;
 }
 
 .isComplited {
-  background-color: rgba($color: #2aff04, $alpha: 0.1);
-  color: #2aff04;
+  background-color: rgba($color: $status-complited, $alpha: 0.1);
+  color: $status-complited;
 }
 
 .isTotal {
@@ -26,6 +26,6 @@
 }
 
 .isWaiting {
-  background-color: rgba($color: #ff8204, $alpha: 0.1);
-  color: #ff8204;
+  background-color: rgba($color: $status-waiting, $alpha: 0.1);
+  color: $status-waiting;
 }

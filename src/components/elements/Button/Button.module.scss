@@ -2,12 +2,14 @@
 
 .button {
   cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
 
   align-self: center;
   font-size: 18px;
   font-weight: 500;
 
-  padding: 10px 30px;
+  padding: 15px 30px;
   border-radius: 15px;
 
   color: #fff;

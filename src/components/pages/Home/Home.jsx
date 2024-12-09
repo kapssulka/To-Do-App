@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Home.module.scss";
 import Header from "../../blocks/Header/Header";
 import Aside from "../../blocks/Aside/Aside";
-import ProjectsBoard from "../ProjectsBoard/ProjectsBoard";
+import { Outlet } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
         <Header />
 
         <main>
-          <ProjectsBoard />
+          <Outlet />
         </main>
       </div>
     </div>

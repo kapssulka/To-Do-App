@@ -14,7 +14,10 @@ export default function Header() {
           <RxHamburgerMenu size={30} />
         </IconHoverWrapper>
 
-        <InputSearch placeholder="Enter projects or tasks" />
+        <InputSearch
+          className={classes.input}
+          placeholder="Enter projects or tasks"
+        />
       </div>
 
       <UserMenu />

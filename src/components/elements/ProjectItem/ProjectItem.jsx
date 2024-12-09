@@ -4,6 +4,7 @@ import ProjectTitle from "../ProjectTitle/ProjectTitle";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { BsListTask } from "react-icons/bs";
 import ProjectProgressBar from "../ProjectProgressBar/ProjectProgressBar";
+import { Link } from "react-router-dom";
 
 export default function ProjectItem({
   title,
@@ -12,9 +13,11 @@ export default function ProjectItem({
   progressCount,
   subTasksCount = 1,
 }) {
+  // TEST
+  let id = 1;
   const a = "inProgress";
   return (
-    <div className={classes.wrapper}>
+    <Link to={`/projects/${id}`} className={classes.wrapper}>
       <div className={classes.head}>
         <ProjectTitle progress={progress}>{title}</ProjectTitle>
         <button className={classes.openMenu}>
@@ -29,6 +32,6 @@ export default function ProjectItem({
         <BsListTask />
         <span> {subTasksCount} </span>
       </div>
-    </div>
+    </Link>
   );
 }

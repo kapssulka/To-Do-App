@@ -12,13 +12,28 @@ export default function Aside() {
     <aside className={classes.aside}>
       <Logo />
       <div className={classes.list}>
-        <NavLink className={classes.link}>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? `${classes.link} ${classes.active}` : classes.link
+          }
+        >
           <HiHome className={classes.linkIcon} size={40} />
         </NavLink>
-        <NavLink className={classes.link}>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            isActive ? `${classes.link} ${classes.active}` : classes.link
+          }
+        >
           <CgProfile className={classes.linkIcon} size={40} />
         </NavLink>
-        <NavLink className={classes.link}>
+        <NavLink
+          to="/tasks"
+          className={({ isActive }) =>
+            isActive ? `${classes.link} ${classes.active}` : classes.link
+          }
+        >
           <IoIosCheckmarkCircle className={classes.linkIcon} size={40} />
         </NavLink>
       </div>

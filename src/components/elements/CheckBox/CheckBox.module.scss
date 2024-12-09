@@ -1,0 +1,57 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.checkbox {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  min-width: 20px;
+  min-height: 20px;
+  border: 2px solid $blue;
+  border-radius: 5px;
+
+  svg {
+    position: absolute;
+    display: none;
+    width: 50%;
+    height: 50%;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+  }
+}
+
+.checkMark {
+  position: absolute;
+  display: none;
+  width: 50%;
+  height: 50%;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $blue;
+}
+
+input:checked + .checkbox {
+  background-color: $blue;
+
+  svg {
+    display: block;
+    color: #fff;
+  }
+}
+input:checked + .checkMark {
+  display: block;
+}

@@ -1,0 +1,67 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  outline: none;
+  border: none;
+
+  label {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    padding: 20px;
+    font-size: 18px;
+    border: 3px solid $light-grey;
+    outline: none;
+
+    border-radius: 30px;
+
+    &::placeholder {
+      opacity: 0.8;
+    }
+  }
+
+  textarea {
+    padding: 20px;
+    font-size: 18px;
+    border: 3px solid $light-grey;
+    border-radius: 30px;
+
+    outline: none;
+    resize: none;
+    height: 150px;
+
+    &::placeholder {
+      opacity: 0.8;
+    }
+
+    /* Для всех браузеров с поддержкой */
+    &::-webkit-scrollbar {
+      width: 5px; /* Ширина скроллбара */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent; /* Цвет трека */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba($color: #000000, $alpha: 0.2); /* Цвет ползунка */
+      border-radius: 10px; /* Скругление */
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Цвет ползунка при наведении */
+    }
+
+    /* Для Firefox */
+    * {
+      scrollbar-width: thin; /* Тонкий скролл */
+      scrollbar-color: #888 #f0f0f0; /* Цвет ползунка и трека */
+    }
+  }
+}

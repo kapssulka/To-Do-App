@@ -1,0 +1,14 @@
+@use "../../../styles/vars.scss" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.addTasks {
+  padding-top: 30px;
+}
+.addTasksTitle {
+  text-align: center;
+}
