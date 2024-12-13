@@ -5,36 +5,45 @@ import Button from "../../elements/Button/Button";
 import TaskItem from "../../elements/TaskItem/TaskItem";
 import BackToLink from "../../elements/BackToLink/BackToLink";
 import InputAdd from "../../elements/InputAdd/InputAdd";
+import DeleteProjectButton from "../../elements/DeleteProjectButton/DeleteProjectButton";
+import DropDown from "../../elements/DropDown/DropDown";
 
-export default function SingleProjectTasks() {
+export default function SingleProjectTasks({
+  title = "Title",
+  projectTasks = [],
+  statusProject,
+  id,
+}) {
   return (
     <div className={classes.wrapper}>
       <header className={classes.header}>
         <div className={classes.left}>
           <BackToLink to="/" />
 
-          <ProjectTitle> Web</ProjectTitle>
+          <ProjectTitle status={statusProject}>{title}</ProjectTitle>
         </div>
 
         <div className={classes.right}>
-          <InputAdd className={classes.input} placeholder="Add new task" />
-          <Button>Add tasks</Button>
+          <div className={classes.inputWrapper}>
+            <InputAdd className={classes.input} placeholder="Add new task" />
+            <Button>Add tasks</Button>
+          </div>
+          {/* <DeleteProjectButton
+            id={id}
+            text="Delete project"
+            size={20}
+            className={classes.delete}
+          /> */}
+
+          <DropDown id={id} />
         </div>
       </header>
 
       <div className={classes.tasksWrapper}>
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
-        <TaskItem />
+        {projectTasks.length > 0 &&
+          projectTasks.map((item, index) => (
+            <TaskItem key={index} taskText={item.text} />
+          ))}
       </div>
     </div>
   );

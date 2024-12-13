@@ -18,7 +18,7 @@ const InputAdd = function (
     <fieldset {...props} className={cn(classes.wrapper, className)}>
       <label>{label}</label>
       {!textarea && <input ref={ref} placeholder={placeholder} type={type} />}
-      {textarea && <textarea placeholder={placeholder}></textarea>}
+      {textarea && <textarea ref={ref} placeholder={placeholder}></textarea>}
     </fieldset>
   );
 };

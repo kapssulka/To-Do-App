@@ -1,0 +1,47 @@
+@use "../../../styles/vars.scss" as *;
+
+.wrapper {
+  position: relative;
+}
+
+.openMenu {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 7px;
+
+  transition: all 0.2s ease-in-out;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba($color: $blue, $alpha: 0.1);
+  }
+}
+
+.drop {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  top: calc(100% + 5px);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  background-color: #fff;
+  -webkit-box-shadow: 0px 1px 23px 0px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.deleteWrapper {
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid #b7b7b7;
+}
+
+.delete {
+  width: 100%;
+}

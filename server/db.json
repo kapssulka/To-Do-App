@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "id": "bc56ed66-aa4f-4528-9b11-615998d14eb8",
+      "title": "Монтаж",
+      "description": "Обучится монтажу, чтобы зарабатывать деньги",
+      "complited": "total",
+      "tasks": [
+        {
+          "id": 1,
+          "text": "Интерфейс",
+          "complited": false
+        },
+        {
+          "id": 2,
+          "text": "Основы",
+          "complited": false
+        },
+        {
+          "id": 3,
+          "text": "Цветокорекция",
+          "complited": false
+        }
+      ],
+      "status": "progress"
+    }
+  ]
+}

@@ -3,25 +3,31 @@ import classes from "./AddNewForm.module.scss";
 import InputAdd from "../../elements/InputAdd/InputAdd";
 import Title from "../../elements/Title/Title";
 import Button from "../../elements/Button/Button";
+import useFormProjectData from "../../../hooks/useFormProjectData";
+import { useDispatch } from "react-redux";
+import { getData, postData } from "../../../redux/projectsSlise";
 
-export default function AddNewForm() {
+export default function AddNewForm({ setAdded }) {
   const [taskInputs, setTaskInputs] = useState(1);
-  const inputRefs = useRef([]); // Массив рефов для инпутов
+  const dispatch = useDispatch();
+
+  const tasksInputRefs = useRef([]); // Массив рефов для инпутов
+  const titleRef = useRef(null); // Массив рефов для инпутов
+  const descriptionRef = useRef(null); // Массив рефов для инпутов
 
   // Функция для перемещения фокуса на последний инпут
   const focusLastInput = () => {
-    const lastInput = inputRefs.current[inputRefs.current.length - 1];
+    const lastInput = tasksInputRefs.current[tasksInputRefs.current.length - 1];
     if (lastInput) {
       lastInput.focus();
     }
   };
 
   function handleKeyDown(e) {
-    let lastInput = inputRefs.current[inputRefs.current.length - 1];
+    let lastInput = tasksInputRefs.current[tasksInputRefs.current.length - 1];
 
     if (e.code === "Enter" && e.target === lastInput) {
       setTaskInputs((prev) => prev + 1);
-      console.log(inputRefs);
     }
   }
 
@@ -31,12 +37,44 @@ export default function AddNewForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const title = titleRef.current.value;
+    const description = descriptionRef.current.value;
+
+    if (title.length > 1 && description.length > 1) {
+      const filtredEmptyTasks = tasksInputRefs.current.filter(
+        (item) => item.value
+      );
+
+      const tasks = filtredEmptyTasks.map((item, index) => {
+        const obj = {
+          id: index + 1,
+          text: item.value,
+          complited: false,
+        };
+        return obj;
+      });
+
+      const complitedData = useFormProjectData(title, description, tasks);
+
+      dispatch(postData(complitedData));
+      setAdded();
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className={classes.form}>
-      <InputAdd placeholder="Enter project title" label="Title" />
+    <form
+      onSubmit={handleSubmit}
+      onKeyDown={(e) => e.code === "Enter" && e.preventDefault()}
+      className={classes.form}
+    >
       <InputAdd
+        ref={titleRef}
+        placeholder="Enter project title"
+        label="Title"
+      />
+      <InputAdd
+        ref={descriptionRef}
         placeholder="Enter project description"
         label="Description"
         textarea
@@ -51,7 +89,7 @@ export default function AddNewForm() {
           Array.from({ length: taskInputs }, (_, index) => (
             <InputAdd
               isDelete
-              ref={(el) => (inputRefs.current[index] = el)}
+              ref={(el) => (tasksInputRefs.current[index] = el)}
               key={index}
               onKeyDown={handleKeyDown}
               placeholder="Enter task"

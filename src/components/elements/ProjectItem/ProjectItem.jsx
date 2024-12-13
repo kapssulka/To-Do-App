@@ -1,36 +1,37 @@
 import React from "react";
 import classes from "./ProjectItem.module.scss";
 import ProjectTitle from "../ProjectTitle/ProjectTitle";
-import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { BsListTask } from "react-icons/bs";
 import ProjectProgressBar from "../ProjectProgressBar/ProjectProgressBar";
 import { Link } from "react-router-dom";
+import DropDown from "../DropDown/DropDown";
 
 export default function ProjectItem({
   title,
   description,
-  progress,
+  status,
   progressCount,
   subTasksCount = 1,
+  id,
 }) {
-  // TEST
-  let id = 1;
-  const a = "inProgress";
   return (
     <Link to={`/projects/${id}`} className={classes.wrapper}>
-      <div className={classes.head}>
-        <ProjectTitle progress={progress}>{title}</ProjectTitle>
-        <button className={classes.openMenu}>
-          <IoEllipsisHorizontalSharp />
-        </button>
+      <div className={classes.topBlock}>
+        <div className={classes.head}>
+          <ProjectTitle status={status}>{title}</ProjectTitle>
+
+          <DropDown id={id} />
+        </div>
+        <p className={classes.description}>{description}</p>
       </div>
 
-      <p className={classes.description}>{description}</p>
-      <ProjectProgressBar progressCount={progressCount} />
+      <div className={classes.bottomBlock}>
+        <ProjectProgressBar progressCount={progressCount} />
 
-      <div className={classes.subTasks}>
-        <BsListTask />
-        <span> {subTasksCount} </span>
+        <div className={classes.subTasks}>
+          <BsListTask />
+          <span> {subTasksCount} </span>
+        </div>
       </div>
     </Link>
   );

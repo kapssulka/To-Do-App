@@ -3,6 +3,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 20px;
   border-radius: 20px;
   -webkit-box-shadow: 0px 1px 23px 0px rgba(0, 0, 0, 0.1);
@@ -12,6 +13,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  column-gap: 15px;
 }
 
 .openMenu {
@@ -37,6 +40,7 @@
 .subTasks {
   display: flex;
   align-items: center;
+  justify-content: end;
   column-gap: 6px;
 
   align-self: self-end;

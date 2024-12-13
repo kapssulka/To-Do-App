@@ -3,9 +3,10 @@ import classes from "./AsideSingleProject.module.scss";
 import Title from "../../elements/Title/Title";
 import ProjectsCountInfo from "../../elements/ProjectsCountInfo/ProjectsCountInfo";
 
-export default function AsideSingleProject() {
-  // test
-  let description = true;
+export default function AsideSingleProject({
+  description = "",
+  coutTasks = 0,
+}) {
   return (
     <aside className={classes.wrapper}>
       <Title className={classes.title} vatiant="h3">
@@ -13,7 +14,7 @@ export default function AsideSingleProject() {
       </Title>
       <div className={classes.description}>
         <Title vatiant="h3">Description:</Title>
-        {description && (
+        {!description && (
           <h4
             style={{
               textTransform: "uppercase",
@@ -24,16 +25,10 @@ export default function AsideSingleProject() {
             No description
           </h4>
         )}
-        {!description && (
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate,
-            illo! Dignissimos culpa illum repellat praesentium earum pariatur,
-            dolor doloribus numquam.
-          </p>
-        )}
+        {description && <p>{description}</p>}
       </div>
       <div className={classes.infoBlock}>
-        <ProjectsCountInfo />
+        <ProjectsCountInfo count={coutTasks} />
         <ProjectsCountInfo status="complited" title="Complited" />
       </div>
     </aside>

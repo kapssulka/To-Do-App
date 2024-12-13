@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 50px;
+  p {
+    font-size: 32px;
+  }
+
+  img {
+    position: absolute;
+    transform: rotate(180deg);
+    max-width: 150px;
+    width: 100%;
+    right: 70px;
+    top: -30px;
+    opacity: 0.6;
+  }
+}

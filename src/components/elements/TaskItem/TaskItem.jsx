@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import classes from "./TaskItem.module.scss";
 import CheckBox from "../CheckBox/CheckBox";
-import { MdDeleteOutline } from "react-icons/md";
+import { MdOutlineDelete } from "react-icons/md";
+
 import cn from "classnames";
 
 import { FaCheck } from "react-icons/fa";
@@ -27,15 +28,10 @@ export default function TaskItem({ taskText }) {
         icon={<FaCheck />}
       />
 
-      <div className={classes.text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
-        deleniti. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Impedit, deleniti. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Impedit, deleniti.
-      </div>
+      <div className={classes.text}>{taskText}</div>
 
       <button className={classes.delete}>
-        <MdDeleteOutline size={25} />
+        <MdOutlineDelete size={25} />
       </button>
     </div>
   );

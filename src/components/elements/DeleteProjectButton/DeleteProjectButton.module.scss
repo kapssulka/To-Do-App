@@ -1,0 +1,32 @@
+@use "../../../styles/vars.scss" as *;
+
+.button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+
+  flex-grow: 0;
+
+  padding: 10px 20px;
+  border-radius: 10px;
+
+  background-color: transparent;
+
+  transition: all 0.1s ease-in-out;
+  background-color: $red;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  span {
+    white-space: nowrap;
+  }
+
+  &:hover {
+    background-color: $red-hover;
+  }
+}

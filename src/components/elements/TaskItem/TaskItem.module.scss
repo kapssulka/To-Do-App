@@ -23,6 +23,7 @@
 .text {
   font-size: 18px;
   padding-right: 15px;
+  flex-grow: 1;
 }
 
 .delete {
@@ -34,13 +35,20 @@
   background-color: transparent;
 
   border-radius: 50%;
-  padding: 0;
 
   padding: 10px;
 
   transition: all 0.2s ease-in-out;
 
+  svg {
+    transition: inherit;
+  }
+
   &:hover {
-    background-color: rgba($color: red, $alpha: 0.2);
+    background-color: $red;
+
+    svg {
+      color: #fff;
+    }
   }
 }
