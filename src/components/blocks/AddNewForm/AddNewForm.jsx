@@ -5,7 +5,8 @@ import Title from "../../elements/Title/Title";
 import Button from "../../elements/Button/Button";
 import useFormProjectData from "../../../hooks/useFormProjectData";
 import { useDispatch } from "react-redux";
-import { getData, postData } from "../../../redux/projectsSlise";
+import { postData } from "../../../redux/projectsSlise";
+import useNewTask from "../../../hooks/useNewTask";
 
 export default function AddNewForm({ setAdded }) {
   const [taskInputs, setTaskInputs] = useState(1);
@@ -47,11 +48,7 @@ export default function AddNewForm({ setAdded }) {
       );
 
       const tasks = filtredEmptyTasks.map((item, index) => {
-        const obj = {
-          id: index + 1,
-          text: item.value,
-          complited: false,
-        };
+        const obj = useNewTask(item.value);
         return obj;
       });
 
@@ -88,6 +85,8 @@ export default function AddNewForm({ setAdded }) {
         {taskInputs &&
           Array.from({ length: taskInputs }, (_, index) => (
             <InputAdd
+              textarea={true}
+              height={100}
               isDelete
               ref={(el) => (tasksInputRefs.current[index] = el)}
               key={index}

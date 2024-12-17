@@ -7,7 +7,7 @@ import { deleteProject } from "../../../redux/projectsSlise";
 import { useNavigate } from "react-router-dom";
 
 export default function DeleteProjectButton({
-  id,
+  idProject,
   text = "Delete",
   className,
   size = 24,
@@ -16,8 +16,8 @@ export default function DeleteProjectButton({
   const navigete = useNavigate();
 
   const handleClick = (e) => {
-    if (id) {
-      dispatch(deleteProject(id));
+    if (idProject) {
+      dispatch(deleteProject(idProject));
       navigete("/", { replace: true });
     }
   };

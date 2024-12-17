@@ -5,7 +5,7 @@ import Form from "./components/blocks/Form/Form";
 import ProjectsBoard from "./components/pages/ProjectsBoard/ProjectsBoard";
 import SingleProject from "./components/pages/SingleProject/SingleProject";
 import CreateNewProject from "./components/pages/CreateNewProject/CreateNewProject";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getData } from "./redux/projectsSlise";
 

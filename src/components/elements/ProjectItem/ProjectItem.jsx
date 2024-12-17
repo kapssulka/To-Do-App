@@ -20,7 +20,7 @@ export default function ProjectItem({
         <div className={classes.head}>
           <ProjectTitle status={status}>{title}</ProjectTitle>
 
-          <DropDown id={id} />
+          <DropDown className={classes.drop} idProject={id} />
         </div>
         <p className={classes.description}>{description}</p>
       </div>

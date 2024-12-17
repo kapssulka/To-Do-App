@@ -10,8 +10,6 @@
   display: flex;
   align-items: center;
   column-gap: 20px;
-  border-bottom: 3px solid $light-grey;
-  padding-bottom: 30px;
 }
 
 .left {
@@ -26,18 +24,6 @@
   justify-content: end;
   align-items: center;
   column-gap: 20px;
-}
-
-.inputWrapper {
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
-}
-
-.input {
-  max-width: 80%;
-  width: 100%;
 }
 
 .tasksWrapper {

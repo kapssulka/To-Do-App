@@ -11,26 +11,14 @@
 
 .head {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
 
   column-gap: 15px;
 }
 
-.openMenu {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  padding: 7px;
-
-  transition: all 0.2s ease-in-out;
-  border-radius: 50%;
-
-  &:hover {
-    background-color: rgba($color: $blue, $alpha: 0.1);
-  }
+.dropMenu {
+  margin-top: 15px;
 }
 
 .description {

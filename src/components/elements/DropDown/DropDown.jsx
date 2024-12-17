@@ -5,7 +5,7 @@ import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import DropDownItemList from "../DropDownItemList/DropDownItemList";
 import DeleteProjectButton from "../DeleteProjectButton/DeleteProjectButton";
 
-export default function DropDown({ id }) {
+export default function DropDown({ idProject, className }) {
   const [activeDrop, setActiveDrop] = useState(false);
   const dropRef = useRef(null);
 
@@ -35,7 +35,7 @@ export default function DropDown({ id }) {
   }, []);
 
   return (
-    <div className={classes.wrapper}>
+    <div className={cn(classes.wrapper, className)}>
       <button onClick={hancdleClick} className={classes.openMenu}>
         <IoEllipsisHorizontalSharp />
       </button>
@@ -48,26 +48,29 @@ export default function DropDown({ id }) {
       >
         <DropDownItemList
           setActiveDrop={setActiveDrop}
-          id={id}
+          idProject={idProject}
           status="total"
         />
         <DropDownItemList
           setActiveDrop={setActiveDrop}
-          id={id}
+          idProject={idProject}
           status="progress"
         />
         <DropDownItemList
           setActiveDrop={setActiveDrop}
-          id={id}
+          idProject={idProject}
           status="waiting"
         />
         <DropDownItemList
           setActiveDrop={setActiveDrop}
-          id={id}
+          idProject={idProject}
           status="complited"
         />
         <div className={classes.deleteWrapper}>
-          <DeleteProjectButton className={classes.delete} id={id} />
+          <DeleteProjectButton
+            className={classes.delete}
+            idProject={idProject}
+          />
         </div>
       </div>
     </div>

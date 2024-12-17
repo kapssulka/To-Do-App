@@ -1,0 +1,17 @@
+@use "../../../styles/vars.scss" as *;
+
+.error {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 10px;
+
+  transform: translateX(-50%);
+
+  width: 90%;
+  padding: 10px 50px;
+  background-color: rgba($color: $red, $alpha: 0.2);
+  color: $red;
+}

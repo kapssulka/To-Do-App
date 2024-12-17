@@ -17,7 +17,7 @@ export const getData = createAsyncThunk(
 
 export const getSingleData = createAsyncThunk(
   "projects/geSingletData",
-  async (id, { rejectWithValue }) => {
+  async (id, { rejectWithValue, getState }) => {
     try {
       const response = await axios(`http://localhost:3001/projects?id=${id}`);
       if (response.status !== 200) throw new Error("Error server");
@@ -46,15 +46,14 @@ export const postData = createAsyncThunk(
   }
 );
 
-// изменение
-
-export const changeStatusData = createAsyncThunk(
-  "projects/changeStatusData",
-  async ({ id, status }, { rejectWithValue }) => {
+// изменение поля
+export const changeFieldData = createAsyncThunk(
+  "projects/changeFieldData",
+  async ([id, newField], { rejectWithValue }) => {
     try {
       const response = await axios.patch(
         `http://localhost:3001/projects/${id}`,
-        { status: status }
+        newField
       );
       if (response.status < 200 || response.status >= 300)
         throw new Error("Error server");
@@ -66,7 +65,27 @@ export const changeStatusData = createAsyncThunk(
   }
 );
 
-// удаление
+// изменение поля задач
+
+export const changeTasksField = createAsyncThunk(
+  "projects/changeTasksField",
+  async ([id, tasks], { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3001/projects/${id}`,
+        tasks
+      );
+      if (response.status < 200 || response.status >= 300)
+        throw new Error("Erroe server");
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// удаление проекта
 
 export const deleteProject = createAsyncThunk(
   "projects/deleteProject",
@@ -99,15 +118,26 @@ const projectsSlice = createSlice({
       .addCase(getData.fulfilled, (state, action) => {
         state.data = action.payload;
       })
+      // получение данных отдельного проекта
+      .addCase(getSingleData.pending, (state) => {
+        state.status = "loading";
+        state.singleData = [];
+      })
       .addCase(getSingleData.fulfilled, (state, action) => {
+        state.status = "success";
+
         state.singleData = action.payload;
       })
       // добавление
       .addCase(postData.fulfilled, (state, action) => {
         state.data.push(action.payload);
       })
-      // изменение статуса
-      .addCase(changeStatusData.fulfilled, (state, action) => {
+      // изменение поля
+      .addCase(changeFieldData.pending, (state, action) => {
+        state.singleData.tasks = [];
+        state.status = "loading";
+      })
+      .addCase(changeFieldData.fulfilled, (state, action) => {
         const updatedObject = action.payload;
 
         state.data = state.data.map((project) =>
@@ -115,8 +145,10 @@ const projectsSlice = createSlice({
         );
 
         state.singleData = updatedObject;
+
+        state.status = "success";
       })
-      // удаление
+      // удаление проекта
       .addCase(deleteProject.fulfilled, (state, action) => {
         state.data = state.data.filter((item) => item.id !== action.payload.id);
       });

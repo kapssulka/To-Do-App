@@ -1,19 +1,24 @@
-import React from "react";
 import classes from "./SingleProjectTasks.module.scss";
 import ProjectTitle from "../../elements/ProjectTitle/ProjectTitle";
-import Button from "../../elements/Button/Button";
 import TaskItem from "../../elements/TaskItem/TaskItem";
 import BackToLink from "../../elements/BackToLink/BackToLink";
-import InputAdd from "../../elements/InputAdd/InputAdd";
-import DeleteProjectButton from "../../elements/DeleteProjectButton/DeleteProjectButton";
 import DropDown from "../../elements/DropDown/DropDown";
+import NotContent from "../NotContent/NotContent";
+import { useSelector } from "react-redux";
+import AddNewTask from "../AddNewTask/AddNewTask";
 
 export default function SingleProjectTasks({
-  title = "Title",
-  projectTasks = [],
   statusProject,
-  id,
+  title,
+  projectTasks = [],
+  idProject,
 }) {
+  const statusRequest = useSelector((state) => state.projects.status);
+
+  const sortProjectTasks = [...projectTasks].sort(
+    (a, b) => a.completed - b.completed
+  );
+
   return (
     <div className={classes.wrapper}>
       <header className={classes.header}>
@@ -24,27 +29,30 @@ export default function SingleProjectTasks({
         </div>
 
         <div className={classes.right}>
-          <div className={classes.inputWrapper}>
-            <InputAdd className={classes.input} placeholder="Add new task" />
-            <Button>Add tasks</Button>
-          </div>
-          {/* <DeleteProjectButton
-            id={id}
-            text="Delete project"
-            size={20}
-            className={classes.delete}
-          /> */}
+          <AddNewTask idProject={idProject} projectTasks={projectTasks} />
 
-          <DropDown id={id} />
+          <DropDown idProject={idProject} />
         </div>
       </header>
 
-      <div className={classes.tasksWrapper}>
-        {projectTasks.length > 0 &&
-          projectTasks.map((item, index) => (
-            <TaskItem key={index} taskText={item.text} />
-          ))}
-      </div>
+      {sortProjectTasks?.length < 1 && statusRequest != "loading" && (
+        <NotContent right={10} text="Add new task" />
+      )}
+      {sortProjectTasks?.length > 0 && (
+        <div className={classes.tasksWrapper}>
+          {sortProjectTasks?.map((item, index) => {
+            return (
+              <TaskItem
+                idTask={item.id}
+                key={index}
+                idProject={idProject}
+                allTasks={sortProjectTasks}
+                taskText={item.text}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

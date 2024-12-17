@@ -11,6 +11,8 @@ export default function CheckBox({
   size,
   className,
   style,
+  checked,
+  onChange,
   ...props
 }) {
   return (
@@ -20,7 +22,14 @@ export default function CheckBox({
       htmlFor={id}
       className={cn(classes.wrapper, className)}
     >
-      <input type="checkbox" name={id} id={id} hidden />
+      <input
+        onChange={onChange}
+        type="checkbox"
+        checked={checked}
+        name={id}
+        id={id}
+        hidden
+      />
 
       <div
         style={{ width: size && `${size}px`, height: size && `${size}px` }}

@@ -2,13 +2,14 @@ import React from "react";
 import classes from "./DropDownItemList.module.scss";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
-import { changeStatusData } from "../../../redux/projectsSlise";
+import { changeFieldData } from "../../../redux/projectsSlise";
 
-export default function DropDownItemList({ status, id, setActiveDrop }) {
+export default function DropDownItemList({ status, idProject, setActiveDrop }) {
   const dispatch = useDispatch();
 
   const hancdleClick = (e) => {
-    dispatch(changeStatusData({ id: id, status: status }));
+    dispatch(changeFieldData([idProject, { status }]));
+
     setActiveDrop((prev) => !prev);
   };
   return (

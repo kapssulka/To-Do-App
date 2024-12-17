@@ -1,0 +1,22 @@
+.task {
+  margin-top: 20px;
+  font-size: 18px;
+  flex-grow: 1;
+  max-width: 100%;
+
+  background-color: transparent;
+
+  resize: none; /* Отключает изменение размера */
+  overflow: hidden; /* Убирает полосы прокрутки */
+  margin-right: 15px;
+  border: none;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid #868686;
+  }
+}
+
+.taskComplited {
+  text-decoration: line-through;
+}

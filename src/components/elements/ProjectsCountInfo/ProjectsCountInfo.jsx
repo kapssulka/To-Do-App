@@ -28,10 +28,6 @@ export default function ProjectsCountInfo({
       >
         {count}
       </div>
-      {/* <div className={classes.coutBlock}>
-        <div className={classes.count}>{count}</div>
-        <span></span>
-      </div> */}
     </div>
   );
 }

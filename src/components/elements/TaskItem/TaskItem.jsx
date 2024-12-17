@@ -1,38 +1,85 @@
 import React, { useState } from "react";
 import classes from "./TaskItem.module.scss";
+import cn from "classnames";
 import CheckBox from "../CheckBox/CheckBox";
 import { MdOutlineDelete } from "react-icons/md";
-
-import cn from "classnames";
+import { MdEdit } from "react-icons/md";
 
 import { FaCheck } from "react-icons/fa";
 
-export default function TaskItem({ taskText }) {
-  const [complitedTasks, setComplitedTasks] = useState(false);
-  const handleClick = (e) => {
-    if (e.target.tagName === "INPUT") {
-      const input = e.target;
-      setComplitedTasks(input.checked);
-    }
+import TextareaTasks from "../TextareaTasks/TextareaTasks";
+import { useDispatch } from "react-redux";
+import { changeFieldData } from "../../../redux/projectsSlise";
+
+export default function TaskItem({ taskText, idProject, allTasks, idTask }) {
+  const [focusForEdit, setFocusForEdit] = useState(false);
+
+  const currentTask = allTasks.find((task) => task.id === idTask);
+
+  const [completedTask, setCompletedTask] = useState(currentTask.completed);
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    const input = e.target;
+    const newObj = allTasks.map((task) => {
+      if (task.id === idTask) {
+        return {
+          ...task,
+          completed: input.checked,
+        };
+      }
+
+      return task;
+    });
+
+    setCompletedTask(input.checked);
+    dispatch(changeFieldData([idProject, { tasks: newObj }]));
+  };
+
+  const deleteTask = (e) => {
+    const filteredTasks = allTasks.filter((task) => task.id !== idTask);
+
+    dispatch(changeFieldData([idProject, { tasks: filteredTasks }]));
   };
 
   return (
     <div
       className={cn(classes.wrapper, {
-        [classes.complitedTasks]: complitedTasks,
+        [classes.completedTask]: completedTask,
       })}
     >
-      <CheckBox
-        onClick={handleClick}
-        style={{ marginRight: "20px" }}
-        icon={<FaCheck />}
-      />
+      <div className={classes.left}>
+        <CheckBox
+          checked={completedTask}
+          onChange={handleChange}
+          style={{ marginRight: "20px" }}
+          icon={<FaCheck />}
+        />
+        <TextareaTasks
+          setFocusForEdit={setFocusForEdit}
+          focusForEdit={focusForEdit}
+          completedTask={completedTask}
+          idTask={idTask}
+          allTasks={allTasks}
+          idProject={idProject}
+          taskText={taskText}
+        />
+      </div>
 
-      <div className={classes.text}>{taskText}</div>
+      <div className={classes.buttons}>
+        <button
+          onClick={(e) => setFocusForEdit((prev) => !prev)}
+          className={cn(classes.edit, {
+            [classes.edited]: focusForEdit,
+          })}
+        >
+          <MdEdit size={25} />
+        </button>
 
-      <button className={classes.delete}>
-        <MdOutlineDelete size={25} />
-      </button>
+        <button onClick={deleteTask} className={classes.delete}>
+          <MdOutlineDelete size={25} />
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,11 @@
-import React from "react";
 import classes from "./AsideSingleProject.module.scss";
 import Title from "../../elements/Title/Title";
 import ProjectsCountInfo from "../../elements/ProjectsCountInfo/ProjectsCountInfo";
 
 export default function AsideSingleProject({
-  description = "",
-  coutTasks = 0,
+  description,
+  coutTasks,
+  completedTasks,
 }) {
   return (
     <aside className={classes.wrapper}>
@@ -29,7 +29,11 @@ export default function AsideSingleProject({
       </div>
       <div className={classes.infoBlock}>
         <ProjectsCountInfo count={coutTasks} />
-        <ProjectsCountInfo status="complited" title="Complited" />
+        <ProjectsCountInfo
+          count={completedTasks}
+          status="complited"
+          title="Complited"
+        />
       </div>
     </aside>
   );

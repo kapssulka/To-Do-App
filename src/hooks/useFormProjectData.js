@@ -5,7 +5,7 @@ export default function useFormProjectData(title, description, tasks = []) {
     id: uuidv4(),
     title: title,
     description: description,
-    complited: "total",
+    status: "total",
     tasks: tasks,
   };
   return obj;
