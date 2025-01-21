@@ -8,16 +8,16 @@ import { MdEdit } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 
 import TextareaTasks from "../TextareaTasks/TextareaTasks";
-import { useDispatch } from "react-redux";
-import { changeFieldData } from "../../../redux/projectsSlise";
+import { usePatchDataMutation } from "../../../redux/projectsAPI";
 
 export default function TaskItem({ taskText, idProject, allTasks, idTask }) {
+  const [changeFieldData] = usePatchDataMutation();
+
   const [focusForEdit, setFocusForEdit] = useState(false);
 
   const currentTask = allTasks.find((task) => task.id === idTask);
 
   const [completedTask, setCompletedTask] = useState(currentTask.completed);
-  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const input = e.target;
@@ -28,18 +28,15 @@ export default function TaskItem({ taskText, idProject, allTasks, idTask }) {
           completed: input.checked,
         };
       }
-
       return task;
     });
-
     setCompletedTask(input.checked);
-    dispatch(changeFieldData([idProject, { tasks: newObj }]));
+    changeFieldData([idProject, { tasks: newObj }]).unwrap();
   };
 
   const deleteTask = (e) => {
     const filteredTasks = allTasks.filter((task) => task.id !== idTask);
-
-    dispatch(changeFieldData([idProject, { tasks: filteredTasks }]));
+    changeFieldData([idProject, { tasks: filteredTasks }]).unwrap();
   };
 
   return (

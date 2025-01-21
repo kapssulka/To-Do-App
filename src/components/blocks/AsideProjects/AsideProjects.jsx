@@ -2,17 +2,17 @@ import React from "react";
 import classes from "./AsideProjects.module.scss";
 import ProjectsCountInfo from "../../elements/ProjectsCountInfo/ProjectsCountInfo";
 import CircleProgressBar from "../../elements/CircleProgressBar/CircleProgressBar";
-import { useSelector } from "react-redux";
 
-export default function AsideProjects() {
-  const data = useSelector((state) => state.projects.data);
-
-  const waitingProject = data?.filter((item) => item.status === "waiting");
-  const progressProject = data?.filter((item) => item.status === "progress");
-  const complitedProject = data?.filter((item) => item.status === "complited");
+export default function AsideProjects({ data = [] }) {
+  const waitingProject =
+    data?.filter((item) => item.status === "waiting") || [];
+  const progressProject =
+    data?.filter((item) => item.status === "progress") || [];
+  const complitedProject =
+    data?.filter((item) => item.status === "complited") || [];
 
   const percentageСompleted =
-    Math.floor((complitedProject.length * 100) / data.length) || 0;
+    Math.floor((complitedProject.length * 100) / data?.length) || 0;
 
   return (
     <aside className={classes.aside}>
@@ -24,7 +24,7 @@ export default function AsideProjects() {
         <h4>Projects status</h4>
 
         <div className={classes.projectsStatus__grid}>
-          <ProjectsCountInfo count={data.length} />
+          <ProjectsCountInfo count={data?.length} />
           <ProjectsCountInfo
             count={complitedProject.length}
             title="complited"

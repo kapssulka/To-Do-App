@@ -1,23 +1,19 @@
-import React, { useEffect } from "react";
 import classes from "./SingleProject.module.scss";
 import SingleProjectTasks from "../../blocks/SingleProjectTasks/SingleProjectTasks";
 import AsideSingleProject from "../../blocks/AsideSingleProject/AsideSingleProject";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getSingleData } from "../../../redux/projectsSlise";
+import { useGetSingleDataQuery } from "../../../redux/projectsAPI";
 
 export default function SingleProject() {
   const { id } = useParams();
-  const currentProjectData = useSelector((state) => state.projects.singleData);
-  const dispath = useDispatch();
+
+  const { data, isLoading } = useGetSingleDataQuery(id);
+
+  const currentProjectData = data?.[0] || [];
 
   const completedTasks = currentProjectData?.tasks?.filter(
     (task) => task.completed
   );
-
-  useEffect(() => {
-    dispath(getSingleData(id));
-  }, [dispath]);
 
   return (
     <section className={classes.wrapper}>
@@ -26,6 +22,7 @@ export default function SingleProject() {
         title={currentProjectData.title}
         projectTasks={currentProjectData.tasks}
         idProject={currentProjectData.id}
+        isLoading={isLoading}
       />
 
       <AsideSingleProject

@@ -4,13 +4,12 @@ import InputAdd from "../../elements/InputAdd/InputAdd";
 import Title from "../../elements/Title/Title";
 import Button from "../../elements/Button/Button";
 import useFormProjectData from "../../../hooks/useFormProjectData";
-import { useDispatch } from "react-redux";
-import { postData } from "../../../redux/projectsSlise";
 import useNewTask from "../../../hooks/useNewTask";
+import { useAddProjectMutation } from "../../../redux/projectsAPI";
 
 export default function AddNewForm({ setAdded }) {
   const [taskInputs, setTaskInputs] = useState(1);
-  const dispatch = useDispatch();
+  const [postData] = useAddProjectMutation();
 
   const tasksInputRefs = useRef([]); // Массив рефов для инпутов
   const titleRef = useRef(null); // Массив рефов для инпутов
@@ -54,7 +53,7 @@ export default function AddNewForm({ setAdded }) {
 
       const complitedData = useFormProjectData(title, description, tasks);
 
-      dispatch(postData(complitedData));
+      postData(complitedData).unwrap();
       setAdded();
     }
   };

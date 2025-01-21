@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import projectsSlice from "./projectsSlise";
+import { projectsApi } from "./projectsAPI";
 
 export const store = configureStore({
   reducer: {
-    projects: projectsSlice,
+    [projectsApi.reducerPath]: projectsApi.reducer,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(projectsApi.middleware),
 });

@@ -4,20 +4,24 @@ import TaskItem from "../../elements/TaskItem/TaskItem";
 import BackToLink from "../../elements/BackToLink/BackToLink";
 import DropDown from "../../elements/DropDown/DropDown";
 import NotContent from "../NotContent/NotContent";
-import { useSelector } from "react-redux";
 import AddNewTask from "../AddNewTask/AddNewTask";
+import { useEffect, useState } from "react";
 
 export default function SingleProjectTasks({
   statusProject,
   title,
   projectTasks = [],
   idProject,
+  isLoading,
 }) {
-  const statusRequest = useSelector((state) => state.projects.status);
+  const [tasks, setTasks] = useState([]);
 
-  const sortProjectTasks = [...projectTasks].sort(
-    (a, b) => a.completed - b.completed
-  );
+  useEffect(() => {
+    const sortProjectTasks = [...projectTasks].sort(
+      (a, b) => a.completed - b.completed
+    );
+    setTasks(sortProjectTasks);
+  }, [projectTasks]);
 
   return (
     <div className={classes.wrapper}>
@@ -35,18 +39,18 @@ export default function SingleProjectTasks({
         </div>
       </header>
 
-      {sortProjectTasks?.length < 1 && statusRequest != "loading" && (
+      {tasks?.length < 1 && isLoading != "loading" && (
         <NotContent right={10} text="Add new task" />
       )}
-      {sortProjectTasks?.length > 0 && (
+      {projectTasks.length > 0 && (
         <div className={classes.tasksWrapper}>
-          {sortProjectTasks?.map((item, index) => {
+          {projectTasks.map((item, index) => {
             return (
               <TaskItem
                 idTask={item.id}
                 key={index}
                 idProject={idProject}
-                allTasks={sortProjectTasks}
+                allTasks={projectTasks}
                 taskText={item.text}
               />
             );

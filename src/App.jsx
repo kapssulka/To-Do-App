@@ -5,17 +5,8 @@ import Form from "./components/blocks/Form/Form";
 import ProjectsBoard from "./components/pages/ProjectsBoard/ProjectsBoard";
 import SingleProject from "./components/pages/SingleProject/SingleProject";
 import CreateNewProject from "./components/pages/CreateNewProject/CreateNewProject";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getData } from "./redux/projectsSlise";
 
 function App() {
-  const dispath = useDispatch();
-
-  useEffect(() => {
-    dispath(getData());
-  }, [dispath]);
-
   return (
     <div className="wrapper">
       <Routes>

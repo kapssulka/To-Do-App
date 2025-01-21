@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./TextareaTasks.module.scss";
 import cn from "classnames";
-import { useDispatch } from "react-redux";
-import { changeFieldData } from "../../../redux/projectsSlise";
+import { usePatchDataMutation } from "../../../redux/projectsAPI";
 
 export default function TextareaTasks({
   idTask,
@@ -13,11 +12,14 @@ export default function TextareaTasks({
   focusForEdit,
   setFocusForEdit,
 }) {
-  const dispatch = useDispatch();
+  const [changeFieldData] = usePatchDataMutation();
 
   const textareaRef = useRef(null);
 
   const [inputTekst, setInputTekst] = useState(taskText);
+  useEffect(() => {
+    setInputTekst(taskText);
+  }, [allTasks]);
 
   const adjustHeight = () => {
     const textarea = textareaRef.current;
@@ -32,7 +34,7 @@ export default function TextareaTasks({
     if (inputTekst.length < 1) {
       const filteredTasks = allTasks.filter((task) => task.id !== idTask);
 
-      dispatch(changeFieldData([idProject, { tasks: filteredTasks }]));
+      changeFieldData([idProject, { tasks: filteredTasks }]).unwrap();
 
       return;
     }
@@ -47,7 +49,7 @@ export default function TextareaTasks({
         return task;
       });
 
-      dispatch(changeFieldData([idProject, { tasks: newObject }]));
+      changeFieldData([idProject, { tasks: newObject }]).unwrap();
     }
   };
 

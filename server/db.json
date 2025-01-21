@@ -1,23 +1,15 @@
 {
   "projects": [
     {
-      "id": "38045b2d-75c5-42ca-ac5c-f6cfb253cac9",
-      "title": "Тест",
-      "description": "без задач",
-      "completed": "total",
-      "tasks": [],
-      "status": "total"
-    },
-    {
-      "id": "aeed96fb-e756-441e-a24b-6989f9c4b922",
-      "title": "hoba",
-      "description": "asdasd",
+      "id": "23cfc61c-e9c4-4627-9633-2c1ab25c33ba",
+      "title": "Новый проект",
+      "description": "йцуйцу",
       "status": "progress",
       "tasks": [
         {
-          "id": "59e186e5-9bef-4936-9a09-d429892b2f53",
-          "text": "asdsdaфывфыв",
-          "completed": true
+          "id": "ba003a0a-9a25-46da-80dc-be22b980aeb4",
+          "text": "ппd23",
+          "completed": false
         }
       ]
     }

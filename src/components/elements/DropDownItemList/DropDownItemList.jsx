@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./DropDownItemList.module.scss";
 import cn from "classnames";
-import { useDispatch } from "react-redux";
-import { changeFieldData } from "../../../redux/projectsSlise";
+
+import { usePatchDataMutation } from "../../../redux/projectsAPI";
 
 export default function DropDownItemList({ status, idProject, setActiveDrop }) {
-  const dispatch = useDispatch();
+  const [changeData, {}] = usePatchDataMutation();
 
   const hancdleClick = (e) => {
-    dispatch(changeFieldData([idProject, { status }]));
+    changeData([idProject, { status }]).unwrap();
 
     setActiveDrop((prev) => !prev);
   };
