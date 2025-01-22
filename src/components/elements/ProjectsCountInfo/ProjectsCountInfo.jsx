@@ -13,7 +13,7 @@ export default function ProjectsCountInfo({
         [classes.total]: status === "total",
         [classes.progress]: status === "progress",
         [classes.waiting]: status === "waiting",
-        [classes.complited]: status === "complited",
+        [classes.complited]: status === "completed",
       })}
     >
       <div className={classes.title}>{title}</div>
@@ -23,7 +23,7 @@ export default function ProjectsCountInfo({
           [classes.total]: status === "total",
           [classes.progress]: status === "progress",
           [classes.waiting]: status === "waiting",
-          [classes.complited]: status === "complited",
+          [classes.complited]: status === "completed",
         })}
       >
         {count}

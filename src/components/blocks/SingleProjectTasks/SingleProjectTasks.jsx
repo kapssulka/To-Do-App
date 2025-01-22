@@ -6,6 +6,7 @@ import DropDown from "../../elements/DropDown/DropDown";
 import NotContent from "../NotContent/NotContent";
 import AddNewTask from "../AddNewTask/AddNewTask";
 import { useEffect, useState } from "react";
+import { usePatchDataMutation } from "../../../redux/projectsAPI";
 
 export default function SingleProjectTasks({
   statusProject,
@@ -14,6 +15,8 @@ export default function SingleProjectTasks({
   idProject,
   isLoading,
 }) {
+  const [changeData] = usePatchDataMutation();
+
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -22,6 +25,22 @@ export default function SingleProjectTasks({
     );
     setTasks(sortProjectTasks);
   }, [projectTasks]);
+
+  useEffect(() => {
+    const completedTasks = projectTasks.filter((item) => item.completed);
+    if (idProject) {
+      if (projectTasks?.length == completedTasks.length) {
+        changeData([idProject, { status: "completed" }]).unwrap();
+      }
+      if (projectTasks?.length > completedTasks.length) {
+        if (completedTasks.length > 0) {
+          changeData([idProject, { status: "progress" }]).unwrap();
+        } else {
+          changeData([idProject, { status: "waiting" }]).unwrap();
+        }
+      }
+    }
+  }, [projectTasks, idProject]);
 
   return (
     <div className={classes.wrapper}>

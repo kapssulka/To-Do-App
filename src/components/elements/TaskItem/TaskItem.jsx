@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./TaskItem.module.scss";
 import cn from "classnames";
 import CheckBox from "../CheckBox/CheckBox";
@@ -18,6 +18,10 @@ export default function TaskItem({ taskText, idProject, allTasks, idTask }) {
   const currentTask = allTasks.find((task) => task.id === idTask);
 
   const [completedTask, setCompletedTask] = useState(currentTask.completed);
+
+  useEffect(() => {
+    setCompletedTask(currentTask.completed);
+  }, [allTasks]);
 
   const handleChange = (e) => {
     const input = e.target;

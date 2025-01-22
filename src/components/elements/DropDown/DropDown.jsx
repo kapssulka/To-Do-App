@@ -4,8 +4,13 @@ import cn from "classnames";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import DropDownItemList from "../DropDownItemList/DropDownItemList";
 import DeleteProjectButton from "../DeleteProjectButton/DeleteProjectButton";
+import { useGetSingleDataQuery } from "../../../redux/projectsAPI";
 
 export default function DropDown({ idProject, className }) {
+  const { data } = useGetSingleDataQuery(idProject);
+
+  const currentAllTasks = data ? data[0]?.tasks : [];
+
   const [activeDrop, setActiveDrop] = useState(false);
   const dropRef = useRef(null);
 
@@ -62,9 +67,10 @@ export default function DropDown({ idProject, className }) {
           status="waiting"
         />
         <DropDownItemList
+          allTasks={currentAllTasks}
           setActiveDrop={setActiveDrop}
           idProject={idProject}
-          status="complited"
+          status="completed"
         />
         <div className={classes.deleteWrapper}>
           <DeleteProjectButton

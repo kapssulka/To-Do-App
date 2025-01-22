@@ -9,7 +9,7 @@ export default function AsideProjects({ data = [] }) {
   const progressProject =
     data?.filter((item) => item.status === "progress") || [];
   const complitedProject =
-    data?.filter((item) => item.status === "complited") || [];
+    data?.filter((item) => item.status === "completed") || [];
 
   const percentageСompleted =
     Math.floor((complitedProject.length * 100) / data?.length) || 0;
@@ -27,8 +27,8 @@ export default function AsideProjects({ data = [] }) {
           <ProjectsCountInfo count={data?.length} />
           <ProjectsCountInfo
             count={complitedProject.length}
-            title="complited"
-            status="complited"
+            title="completed"
+            status="completed"
           />
           <ProjectsCountInfo
             count={progressProject.length}

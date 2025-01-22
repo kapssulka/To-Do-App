@@ -8,7 +8,7 @@ export default function ProjectTitle({ children = "Title", status = "total" }) {
       className={cn(classes.title, {
         [classes.isTotal]: status === "total",
         [classes.inProgress]: status === "progress",
-        [classes.isComplited]: status === "complited",
+        [classes.isCompleted]: status === "completed",
         [classes.isWaiting]: status === "waiting",
       })}
     >

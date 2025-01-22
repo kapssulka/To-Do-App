@@ -31,8 +31,8 @@ export default function AsideSingleProject({
         <ProjectsCountInfo count={coutTasks} />
         <ProjectsCountInfo
           count={completedTasks}
-          status="complited"
-          title="Complited"
+          status="completed"
+          title="Completed"
         />
       </div>
     </aside>
