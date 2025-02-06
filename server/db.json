@@ -29,28 +29,15 @@
       ]
     },
     {
-      "id": "cae250e3-81e0-4e24-b0f8-a102544d0d97",
-      "title": "sad",
-      "description": "sd",
-      "status": "completed",
-      "tasks": [
-        {
-          "id": "e0fd9417-7cfc-4f7f-adec-2dc0e22b581e",
-          "text": "ads",
-          "completed": true
-        }
-      ]
-    },
-    {
       "id": "1b8ddd75-ca0e-48f3-9166-ff053a25a078",
       "title": "asda",
       "description": "sd",
-      "status": "waiting",
+      "status": "progress",
       "tasks": [
         {
-          "id": "ba2829bc-91ea-4004-bba4-ec73b80fc1a3",
-          "text": "1\n",
-          "completed": true
+          "id": "f29b2183-70cc-436f-ac45-3eb9b21d007d",
+          "text": "123",
+          "completed": false
         },
         {
           "id": "01d1874a-c5b7-42e1-b411-4f2ccdd943de",
@@ -61,6 +48,19 @@
           "id": "774dee60-f3bc-4284-9268-d05484df73e1",
           "text": "3",
           "completed": true
+        }
+      ]
+    },
+    {
+      "id": "aba527ae-d160-4a75-89ce-94ec087bbe78",
+      "title": "123",
+      "description": "123",
+      "status": "total",
+      "tasks": [
+        {
+          "id": "3f298090-6433-441a-9922-ed593085a59f",
+          "text": "1232141",
+          "completed": false
         }
       ]
     }

@@ -6,6 +6,8 @@ export default function Input({
   label,
   type = "text",
   placeholder = "",
+  valueInput,
+  onChange,
 }) {
   return (
     <fieldset className={classes.wrapper}>
@@ -15,9 +17,11 @@ export default function Input({
       <input
         className={classes.input}
         placeholder={placeholder}
+        value={valueInput}
+        onChange={(e) => onChange(e.target.value)}
+        id={name}
         type={type}
         name={name}
-        id={name}
       />
     </fieldset>
   );

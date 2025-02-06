@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./ProjectsBoard.module.scss";
 import Projects from "../../blocks/Projects/Projects";
 import AsideProjects from "../../blocks/AsideProjects/AsideProjects";

@@ -6,8 +6,11 @@ import { CgProfile } from "react-icons/cg";
 import { MdLogout } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import Logo from "../../elements/Logo/Logo";
+import { logOutUser } from "../../../helpers/HelpersFirebase";
 
 export default function Aside() {
+  const handleLogOut = () => logOutUser();
+
   return (
     <aside className={classes.aside}>
       <Logo />
@@ -38,7 +41,7 @@ export default function Aside() {
         </NavLink>
       </div>
 
-      <button className={classes.logout}>
+      <button onClick={handleLogOut} className={classes.logout}>
         <MdLogout className={classes.linkIcon} size={40} />
       </button>
     </aside>
