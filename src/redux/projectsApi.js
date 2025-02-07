@@ -7,7 +7,8 @@ export const projectsApi = createApi({
 
   endpoints: (build) => ({
     getData: build.query({
-      query: (id) => `projects ${id ? `/${id}` : ""}`,
+      query: ([userId, id]) =>
+        `projects?userId=${userId ? `${userId}` : ""}${id ? `&id=${id}` : ""}`,
       providesTags: (result) =>
         result
           ? [
