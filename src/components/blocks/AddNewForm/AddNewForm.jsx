@@ -3,9 +3,11 @@ import classes from "./AddNewForm.module.scss";
 import InputAdd from "../../elements/InputAdd/InputAdd";
 import Title from "../../elements/Title/Title";
 import Button from "../../elements/Button/Button";
-import useFormProjectData from "../../../hooks/useFormProjectData";
-import useNewTask from "../../../hooks/useNewTask";
 import { useAddProjectMutation } from "../../../redux/projectsAPI";
+import {
+  createNewTask,
+  createFormProjectData,
+} from "../../../helpers/objectHelpers";
 
 export default function AddNewForm({ setAdded }) {
   const [taskInputs, setTaskInputs] = useState(1);
@@ -47,11 +49,11 @@ export default function AddNewForm({ setAdded }) {
       );
 
       const tasks = filtredEmptyTasks.map((item, index) => {
-        const obj = useNewTask(item.value);
+        const obj = createNewTask(item.value);
         return obj;
       });
 
-      const complitedData = useFormProjectData(title, description, tasks);
+      const complitedData = createFormProjectData(title, description, tasks);
 
       postData(complitedData).unwrap();
       setAdded();

@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import classes from "./AddNewTask.module.scss";
 import InputAdd from "../../elements/InputAdd/InputAdd";
 import Button from "../../elements/Button/Button";
-import useNewTask from "../../../hooks/useNewTask";
 import { usePatchDataMutation } from "../../../redux/projectsAPI";
+import { createNewTask } from "../../../helpers/objectHelpers";
 
 export default function AddNewTask({ projectTasks, idProject }) {
   const [addNewTask] = usePatchDataMutation();
@@ -26,7 +26,7 @@ export default function AddNewTask({ projectTasks, idProject }) {
     const taskValue = textarea.value.trim();
 
     if (taskValue.length > 0) {
-      const taskObj = useNewTask(taskValue);
+      const taskObj = createNewTask(taskValue);
 
       await addNewTask([
         idProject,
