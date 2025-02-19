@@ -1,8 +1,16 @@
-import React from "react";
+import { IStatus } from "../../../types/data";
 import classes from "./ProjectTitle.module.scss";
 import cn from "classnames";
 
-export default function ProjectTitle({ children = "Title", status = "total" }) {
+interface IProps {
+  children: string;
+  status: IStatus;
+}
+
+export default function ProjectTitle({
+  children = "Title",
+  status = "total",
+}: IProps) {
   return (
     <h3
       className={cn(classes.title, {

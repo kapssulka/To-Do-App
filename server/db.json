@@ -24,8 +24,18 @@
       "userId": "od8NUril8kcQCTIRDom1AAVWUSx1",
       "title": "g3",
       "description": "1123",
-      "status": "completed",
+      "status": "progress",
       "tasks": [
+        {
+          "id": "bcfdae53-33dd-413d-ba0e-22732b94e933",
+          "text": "asdsad",
+          "completed": true
+        },
+        {
+          "id": "22bbf1e7-6257-4cac-9e12-aacd273534a3",
+          "text": "wdasdas",
+          "completed": true
+        },
         {
           "id": "fbbc9922-4494-4081-9a4a-086a116e3452",
           "text": "123",

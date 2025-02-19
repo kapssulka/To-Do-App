@@ -6,7 +6,7 @@ import SingleProject from "./components/pages/SingleProject/SingleProject";
 import CreateNewProject from "./components/pages/CreateNewProject/CreateNewProject";
 import Login from "./components/pages/Login/Login";
 import Register from "./components/pages/Register/Register";
-import WithAuth from "./hoc/withAuth";
+import WithAuth from "./hoc/WithAuth";
 import WithGuest from "./hoc/WithGuest";
 
 function App() {

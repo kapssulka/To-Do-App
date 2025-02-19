@@ -1,24 +1,34 @@
-import React, { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import classes from "./DropDownItemList.module.scss";
 import cn from "classnames";
 
-import { usePatchDataMutation } from "../../../redux/projectsAPI";
+import { usePatchDataMutation } from "../../../redux/projectsApi";
+import { IdProject, IStatus, Tasks } from "../../../types/data";
+import * as React from "react";
 import {
   isStatusSelectable,
   updateAllTasksStatus,
 } from "../../../helpers/workWithStatus";
+
+interface IProps {
+  status: IStatus;
+  idProject: IdProject;
+  setActiveDrop: Dispatch<SetStateAction<boolean>>;
+  allTasks: Tasks;
+}
 
 export default function DropDownItemList({
   status,
   idProject,
   setActiveDrop,
   allTasks,
-}) {
-  const [shouldUpdateTasks, setShouldUpdateTasks] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+}: IProps) {
+  const [shouldUpdateTasks, setShouldUpdateTasks] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
   const [changeData, {}] = usePatchDataMutation();
 
-  const hancdleClick = async (e) => {
+  const hancdleClick = async (e: React.MouseEvent<HTMLElement>) => {
     await changeData([idProject, { status }]).unwrap();
     setShouldUpdateTasks(true);
     setActiveDrop((prev) => !prev);

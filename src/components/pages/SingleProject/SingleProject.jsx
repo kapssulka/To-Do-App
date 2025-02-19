@@ -2,7 +2,7 @@ import classes from "./SingleProject.module.scss";
 import SingleProjectTasks from "../../blocks/SingleProjectTasks/SingleProjectTasks";
 import AsideSingleProject from "../../blocks/AsideSingleProject/AsideSingleProject";
 import { useParams } from "react-router-dom";
-import { useGetSingleDataQuery } from "../../../redux/projectsAPI";
+import { useGetSingleDataQuery } from "../../../redux/projectsApi";
 
 export default function SingleProject() {
   const { id } = useParams();

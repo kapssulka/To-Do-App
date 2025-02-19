@@ -1,41 +1,48 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classes from "./DropDown.module.scss";
 import cn from "classnames";
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import DropDownItemList from "../DropDownItemList/DropDownItemList";
 import DeleteProjectButton from "../DeleteProjectButton/DeleteProjectButton";
-import { useGetSingleDataQuery } from "../../../redux/projectsAPI";
+import { useGetSingleDataQuery } from "../../../redux/projectsApi";
+import { IdProject } from "../../../types/data";
+import * as React from "react";
 
-export default function DropDown({ idProject, className }) {
+interface IProps {
+  idProject: IdProject;
+  className?: string;
+}
+
+export default function DropDown({ idProject, className }: IProps) {
   const { data } = useGetSingleDataQuery(idProject);
 
   const currentAllTasks = data ? data[0]?.tasks : [];
 
   const [activeDrop, setActiveDrop] = useState(false);
-  const dropRef = useRef(null);
+  const dropRef = useRef<HTMLDivElement | null>(null);
 
-  const hancdleClick = (e) => {
+  const hancdleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     e.preventDefault();
 
     setActiveDrop((prev) => !prev);
   };
 
-  const handleDropDownClick = (e) => {
+  const handleDropDownClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
   };
 
   useEffect(() => {
-    const hanleClick = (e) => {
-      if (!dropRef.current.contains(e.target)) {
+    const handleClick = (e: MouseEvent) => {
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
         setActiveDrop(false);
       }
     };
 
-    window.addEventListener("click", hanleClick);
+    window.addEventListener("click", handleClick);
 
     return () => {
-      window.removeEventListener("click", hanleClick);
+      window.removeEventListener("click", handleClick);
     };
   }, []);
 

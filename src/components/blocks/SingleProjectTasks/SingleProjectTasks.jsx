@@ -6,7 +6,7 @@ import DropDown from "../../elements/DropDown/DropDown";
 import NotContent from "../NotContent/NotContent";
 import AddNewTask from "../AddNewTask/AddNewTask";
 import { useEffect, useState } from "react";
-import { usePatchDataMutation } from "../../../redux/projectsAPI";
+import { usePatchDataMutation } from "../../../redux/projectsApi";
 
 export default function SingleProjectTasks({
   statusProject,

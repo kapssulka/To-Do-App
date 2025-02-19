@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./ProjectItem.module.scss";
 import ProjectTitle from "../ProjectTitle/ProjectTitle";
 import { BsListTask } from "react-icons/bs";
