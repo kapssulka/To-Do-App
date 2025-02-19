@@ -35,8 +35,6 @@ export default function SingleProjectTasks({
       if (projectTasks?.length > completedTasks.length) {
         if (completedTasks.length > 0) {
           changeData([idProject, { status: "progress" }]).unwrap();
-        } else {
-          changeData([idProject, { status: "waiting" }]).unwrap();
         }
       }
     }

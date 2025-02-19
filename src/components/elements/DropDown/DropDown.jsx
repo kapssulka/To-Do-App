@@ -52,16 +52,19 @@ export default function DropDown({ idProject, className }) {
         onClick={handleDropDownClick}
       >
         <DropDownItemList
+          allTasks={currentAllTasks}
           setActiveDrop={setActiveDrop}
           idProject={idProject}
           status="total"
         />
         <DropDownItemList
+          allTasks={currentAllTasks}
           setActiveDrop={setActiveDrop}
           idProject={idProject}
           status="progress"
         />
         <DropDownItemList
+          allTasks={currentAllTasks}
           setActiveDrop={setActiveDrop}
           idProject={idProject}
           status="waiting"

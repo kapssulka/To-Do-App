@@ -3,6 +3,10 @@ import classes from "./DropDownItemList.module.scss";
 import cn from "classnames";
 
 import { usePatchDataMutation } from "../../../redux/projectsAPI";
+import {
+  isStatusSelectable,
+  updateAllTasksStatus,
+} from "../../../helpers/workWithStatus";
 
 export default function DropDownItemList({
   status,
@@ -11,7 +15,7 @@ export default function DropDownItemList({
   allTasks,
 }) {
   const [shouldUpdateTasks, setShouldUpdateTasks] = useState(false);
-
+  const [isDisabled, setIsDisabled] = useState(false);
   const [changeData, {}] = usePatchDataMutation();
 
   const hancdleClick = async (e) => {
@@ -22,29 +26,32 @@ export default function DropDownItemList({
 
   useEffect(() => {
     if (shouldUpdateTasks && allTasks?.length > 0) {
-      const modifyTasks = allTasks.map((item) => ({
-        ...item,
-        completed: true,
-      }));
+      const tasksWithChangedStatus = updateAllTasksStatus(allTasks, status);
 
-      if (status === "completed") {
-        changeData([idProject, { tasks: modifyTasks }])
-          .unwrap()
-          .finally(() => setShouldUpdateTasks(false)); // Сбрасываем флаг
-      }
+      changeData([idProject, { tasks: tasksWithChangedStatus }])
+        .unwrap()
+        .finally(() => setShouldUpdateTasks(false)); // Сбрасываем флаг
     }
+
+    if (allTasks?.length > 0)
+      setIsDisabled(isStatusSelectable(allTasks, status));
   }, [shouldUpdateTasks, allTasks, status]);
+
   return (
-    <div
-      onClick={hancdleClick}
-      className={cn(classes.item, {
-        [classes.item_total]: status === "total",
-        [classes.item_progress]: status === "progress",
-        [classes.item_waiting]: status === "waiting",
-        [classes.item_complited]: status === "completed",
-      })}
-    >
-      {status}
-    </div>
+    <>
+      {!isDisabled && (
+        <button
+          onClick={hancdleClick}
+          className={cn(classes.item, {
+            [classes.item_total]: status === "total",
+            [classes.item_progress]: status === "progress",
+            [classes.item_waiting]: status === "waiting",
+            [classes.item_complited]: status === "completed",
+          })}
+        >
+          {status}
+        </button>
+      )}
+    </>
   );
 }
