@@ -1,8 +1,14 @@
-import React from "react";
+import { ReactNode } from "react";
 import classes from "./Title.module.scss";
 import cn from "classnames";
 
-export default function Title({ vatiant = "h1", children, className }) {
+interface IProps {
+  vatiant?: string;
+  children: ReactNode;
+  className?: string;
+}
+
+export default function Title({ vatiant = "h1", children, className }: IProps) {
   switch (vatiant) {
     case "h1":
       return <h1 className={cn(classes.h1, className)}>{children}</h1>;

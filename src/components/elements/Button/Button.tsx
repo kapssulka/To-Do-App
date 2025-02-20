@@ -3,9 +3,9 @@ import classes from "./Button.module.scss";
 import cn from "classnames";
 
 interface IProps extends HTMLProps<HTMLButtonElement> {
-  type: "button" | "reset" | "submit";
+  type?: "button" | "reset" | "submit";
   children: string;
-  className: string;
+  className?: string;
 }
 
 export default function Button({

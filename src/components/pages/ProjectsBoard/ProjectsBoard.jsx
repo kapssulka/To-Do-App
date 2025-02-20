@@ -1,7 +1,7 @@
 import classes from "./ProjectsBoard.module.scss";
 import Projects from "../../blocks/Projects/Projects";
 import AsideProjects from "../../blocks/AsideProjects/AsideProjects";
-import { useGetDataQuery } from "../../../redux/projectsAPI";
+import { useGetDataQuery } from "../../../redux/projectsApi";
 import { auth } from "../../../firebase";
 import { useEffect, useState } from "react";
 

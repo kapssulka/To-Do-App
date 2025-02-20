@@ -1,5 +1,5 @@
 // status
-export type IStatus = "total" | "progress" | "completed" | "waiting";
+export type Status = "total" | "progress" | "completed" | "waiting";
 
 // Project Tasks
 
@@ -12,3 +12,12 @@ interface ITasks {
 }
 
 export type Tasks = ITasks[];
+
+export interface IProjectData {
+  id: string;
+  userId: string;
+  title: string;
+  description: string;
+  status: Status;
+  tasks: ITasks[];
+}

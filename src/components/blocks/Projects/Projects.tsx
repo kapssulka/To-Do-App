@@ -4,18 +4,10 @@ import Button from "../../elements/Button/Button";
 import ProjectItem from "../../elements/ProjectItem/ProjectItem";
 import { Link } from "react-router-dom";
 import NotContent from "../NotContent/NotContent";
+import { IProjectData } from "../../../types/data";
+import { calcPersentComplitedTasks } from "../../../helpers/utils";
 
-export default function Projects({ data }) {
-  const calcPersentComplitedTasks = (tasks) => {
-    let persentCompleted = 0;
-    if (tasks.length > 0) {
-      const completed = tasks.filter((task) => task.completed === true);
-      persentCompleted = (100 * completed.length) / tasks.length;
-    }
-
-    return Math.round(persentCompleted);
-  };
-
+export default function Projects({ data }: { data: IProjectData[] }) {
   return (
     <div className={classes.wrapper}>
       <header className={classes.header}>
@@ -31,7 +23,9 @@ export default function Projects({ data }) {
       <div className={classes.grid}>
         {data?.length > 0 &&
           data?.map((item) => {
-            const persentCompleted = calcPersentComplitedTasks(item.tasks);
+            const persentCompleted: number = calcPersentComplitedTasks(
+              item.tasks
+            );
 
             return (
               <ProjectItem
