@@ -4,9 +4,10 @@ import AsideProjects from "../../blocks/AsideProjects/AsideProjects";
 import { useGetDataQuery } from "../../../redux/projectsApi";
 import { auth } from "../../../firebase";
 import { useEffect, useState } from "react";
+import { IProjectData } from "../../../types/data";
 
 export default function TasksBoard() {
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState<null | string>(null);
 
   const { data } = useGetDataQuery([userId], {
     skip: !userId,

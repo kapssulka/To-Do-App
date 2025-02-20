@@ -1,12 +1,18 @@
-import React from "react";
+import { Status } from "../../../types/data";
 import classes from "./ProjectsCountInfo.module.scss";
 import cn from "classnames";
+
+interface IProps {
+  title?: string;
+  count: number;
+  status?: Status;
+}
 
 export default function ProjectsCountInfo({
   title = "total",
   count = 0,
   status = "total",
-}) {
+}: IProps) {
   return (
     <div
       className={cn(classes.wrapper, {

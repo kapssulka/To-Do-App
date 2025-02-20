@@ -48,7 +48,7 @@
       "userId": "et3sfNHd00RbeKjTg561nEaHGaz2",
       "title": "CS:GO",
       "description": "test",
-      "status": "progress",
+      "status": "total",
       "tasks": [
         {
           "id": "7b347b43-3329-4388-81b9-f0bdb6ae6d38",
@@ -58,17 +58,17 @@
         {
           "id": "61350c6d-9c28-463c-b1f1-e1e2ad5d9bad",
           "text": "2",
-          "completed": true
+          "completed": false
         },
         {
           "id": "e34a1296-8ca6-4699-ae4d-6994b6f33488",
           "text": "3",
-          "completed": true
+          "completed": false
         },
         {
           "id": "0b303899-ce8d-48af-87be-f9414dba390a",
           "text": "4",
-          "completed": true
+          "completed": false
         }
       ]
     },
@@ -77,12 +77,12 @@
       "userId": "et3sfNHd00RbeKjTg561nEaHGaz2",
       "title": "ФФФФФФФФФФФФФ",
       "description": "Фывфыв",
-      "status": "total",
+      "status": "completed",
       "tasks": [
         {
           "id": "4ad1cafd-5375-4218-86fb-262dcbd969c1",
           "text": "фыв",
-          "completed": false
+          "completed": true
         }
       ]
     }
