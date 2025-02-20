@@ -1,10 +1,13 @@
-import React from "react";
 import classes from "./CircleProgressBar.module.scss";
 
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-export default function CircleProgressBar({ value = 0 }) {
+interface IProps {
+  value?: number;
+}
+
+export default function CircleProgressBar({ value = 0 }: IProps) {
   return (
     <div className={classes.wrapper}>
       <CircularProgressbar value={value} className={classes.circle} />

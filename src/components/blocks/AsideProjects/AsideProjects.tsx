@@ -1,23 +1,24 @@
-import React from "react";
 import classes from "./AsideProjects.module.scss";
 import ProjectsCountInfo from "../../elements/ProjectsCountInfo/ProjectsCountInfo";
 import CircleProgressBar from "../../elements/CircleProgressBar/CircleProgressBar";
+import { getProjectsByStatus } from "../../../helpers/utils";
+import { IProjectData } from "../../../types/data";
 
 export default function AsideProjects({ data = [] }) {
-  const waitingProject =
-    data?.filter((item) => item.status === "waiting") || [];
-  const progressProject =
-    data?.filter((item) => item.status === "progress") || [];
-  const complitedProject =
-    data?.filter((item) => item.status === "completed") || [];
+  const waitingProject: IProjectData[] = getProjectsByStatus(data, "waiting");
+  const progressProject: IProjectData[] = getProjectsByStatus(data, "progress");
+  const complitedProject: IProjectData[] = getProjectsByStatus(
+    data,
+    "completed"
+  );
 
-  const percentageСompleted =
+  const percentageСompletedProjects: number =
     Math.floor((complitedProject.length * 100) / data?.length) || 0;
 
   return (
     <aside className={classes.aside}>
       <h3 className={classes.title}>Projects info</h3>
-      <CircleProgressBar value={percentageСompleted} />
+      <CircleProgressBar value={percentageСompletedProjects} />
       {/* progress bar */}
 
       <div className={classes.projectsStatus}>
