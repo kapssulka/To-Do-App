@@ -14,3 +14,11 @@ export const calcPersentComplitedTasks = (tasks) => {
 export const getProjectsByStatus = (data, status) => {
   return data?.filter((item) => item.status === status) || [];
 };
+
+//
+export const adjustHeight = (textarea) => {
+  if (textarea) {
+    textarea.style.height = "auto"; // Сбрасываем высоту
+    textarea.style.height = `${textarea.scrollHeight}px`; // Устанавливаем высоту на основе содержимого
+  }
+};

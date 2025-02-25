@@ -2,11 +2,17 @@ import classes from "./AsideSingleProject.module.scss";
 import Title from "../../elements/Title/Title";
 import ProjectsCountInfo from "../../elements/ProjectsCountInfo/ProjectsCountInfo";
 
+interface IProps {
+  description: string;
+  coutTasks: number;
+  completedTasks: number;
+}
+
 export default function AsideSingleProject({
   description,
   coutTasks,
   completedTasks,
-}) {
+}: IProps) {
   return (
     <aside className={classes.wrapper}>
       <Title className={classes.title} vatiant="h3">

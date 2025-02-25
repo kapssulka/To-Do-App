@@ -1,24 +1,32 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import classes from "./AddNewTask.module.scss";
 import InputAdd from "../../elements/InputAdd/InputAdd";
 import Button from "../../elements/Button/Button";
-import { usePatchDataMutation } from "../../../redux/projectsAPI";
+import { usePatchDataMutation } from "../../../redux/projectsApi";
 import { createNewTask } from "../../../helpers/objectHelpers";
+import { Tasks } from "../../../types/data";
 
-export default function AddNewTask({ projectTasks, idProject }) {
+interface IProps {
+  projectTasks: Tasks;
+  idProject: string;
+}
+
+export default function AddNewTask({ projectTasks, idProject }: IProps) {
   const [addNewTask] = usePatchDataMutation();
 
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
   const [hasTaskValue, setHasTaskValue] = useState(true);
 
-  const handleInput = (e) => {
-    if (inputRef.current.value.length > 0) {
+  const handleInput = (
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (inputRef.current && inputRef.current.value.length > 0) {
       setHasTaskValue(true);
     }
   };
 
-  const handleClick = async (e) => {
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!inputRef.current) return;
 
     const textarea = inputRef.current;
@@ -45,7 +53,7 @@ export default function AddNewTask({ projectTasks, idProject }) {
         hasError={!hasTaskValue}
         onInput={handleInput}
         height={100}
-        textarea={true}
+        isTextarea={true}
         ref={inputRef}
         className={classes.input}
         placeholder="Add new task"

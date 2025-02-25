@@ -3,13 +3,23 @@ import SingleProjectTasks from "../../blocks/SingleProjectTasks/SingleProjectTas
 import AsideSingleProject from "../../blocks/AsideSingleProject/AsideSingleProject";
 import { useParams } from "react-router-dom";
 import { useGetSingleDataQuery } from "../../../redux/projectsApi";
+import { IProjectData } from "../../../types/data";
 
 export default function SingleProject() {
   const { id } = useParams();
 
   const { data, isLoading } = useGetSingleDataQuery(id);
 
-  const currentProjectData = data?.[0] || [];
+  const defaultProjectData: IProjectData = {
+    tasks: [],
+    status: "total",
+    userId: "",
+    title: "",
+    id: "",
+    description: "",
+  };
+
+  const currentProjectData: IProjectData = data?.[0] || defaultProjectData;
 
   const completedTasks = currentProjectData?.tasks?.filter(
     (task) => task.completed

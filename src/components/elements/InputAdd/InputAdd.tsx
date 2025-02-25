@@ -1,7 +1,18 @@
-import React, { forwardRef } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import classes from "./InputAdd.module.scss";
 import cn from "classnames";
 import ErrorMesasge from "../ErrorMesasge/ErrorMesasge";
+
+interface IProps {
+  height: null | number;
+  className: string;
+  label?: string;
+  onInput: (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  isTextarea: boolean;
+  placeholder: string;
+  hasError: boolean;
+  type?: "text" | "email" | "password";
+}
 
 const InputAdd = function (
   {
@@ -10,13 +21,12 @@ const InputAdd = function (
     type = "text",
     label,
     onInput,
-    textarea = false,
-    isDelete = false,
+    isTextarea = false,
     placeholder,
     hasError,
     ...props
-  },
-  ref
+  }: IProps,
+  ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>
 ) {
   return (
     <fieldset
@@ -26,19 +36,19 @@ const InputAdd = function (
       })}
     >
       <label>{label}</label>
-      {!textarea && (
+      {!isTextarea && (
         <input
           onInput={onInput}
-          ref={ref}
+          ref={ref as ForwardedRef<HTMLInputElement>}
           style={{ height: height ? `${height}px` : "" }}
           placeholder={placeholder}
           type={type}
         />
       )}
-      {textarea && (
+      {isTextarea && (
         <textarea
           onInput={onInput}
-          ref={ref}
+          ref={ref as ForwardedRef<HTMLTextAreaElement>}
           style={{ height: height ? `${height}px` : "" }}
           placeholder={placeholder}
         ></textarea>
@@ -51,4 +61,6 @@ const InputAdd = function (
   );
 };
 
-export default forwardRef(InputAdd);
+export default forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
+  InputAdd
+);

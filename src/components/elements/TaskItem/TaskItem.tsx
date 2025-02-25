@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./TaskItem.module.scss";
 import cn from "classnames";
 import CheckBox from "../CheckBox/CheckBox";
@@ -8,22 +8,35 @@ import { MdEdit } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 
 import TextareaTasks from "../TextareaTasks/TextareaTasks";
-import { usePatchDataMutation } from "../../../redux/projectsAPI";
+import { usePatchDataMutation } from "../../../redux/projectsApi";
+import { ITasks, Tasks } from "../../../types/data";
 
-export default function TaskItem({ taskText, idProject, allTasks, idTask }) {
+interface IProps {
+  taskText: string;
+  idProject: string;
+  allTasks: Tasks;
+  idTask: string;
+}
+
+export default function TaskItem({
+  taskText,
+  idProject,
+  allTasks,
+  idTask,
+}: IProps) {
   const [changeFieldData] = usePatchDataMutation();
 
   const [focusForEdit, setFocusForEdit] = useState(false);
 
-  const currentTask = allTasks.find((task) => task.id === idTask);
+  const currentTask: ITasks | undefined = allTasks.find(
+    (task) => task.id === idTask
+  );
 
-  const [completedTask, setCompletedTask] = useState(currentTask.completed);
+  const [completedTask, setCompletedTask] = useState(
+    currentTask?.completed || false
+  );
 
-  useEffect(() => {
-    setCompletedTask(currentTask.completed);
-  }, [allTasks]);
-
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target;
     const newObj = allTasks.map((task) => {
       if (task.id === idTask) {
@@ -38,10 +51,17 @@ export default function TaskItem({ taskText, idProject, allTasks, idTask }) {
     changeFieldData([idProject, { tasks: newObj }]).unwrap();
   };
 
-  const deleteTask = (e) => {
-    const filteredTasks = allTasks.filter((task) => task.id !== idTask);
+  const deleteTask = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const filteredTasks: Tasks = allTasks.filter((task) => task.id !== idTask);
+
     changeFieldData([idProject, { tasks: filteredTasks }]).unwrap();
   };
+
+  useEffect(() => {
+    if (currentTask) {
+      setCompletedTask(currentTask?.completed);
+    }
+  }, [allTasks]);
 
   return (
     <div
@@ -51,7 +71,7 @@ export default function TaskItem({ taskText, idProject, allTasks, idTask }) {
     >
       <div className={classes.left}>
         <CheckBox
-          checked={completedTask}
+          checked={completedTask || false}
           onChange={handleChange}
           style={{ marginRight: "20px" }}
           icon={<FaCheck />}

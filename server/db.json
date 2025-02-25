@@ -48,27 +48,22 @@
       "userId": "et3sfNHd00RbeKjTg561nEaHGaz2",
       "title": "CS:GO",
       "description": "test",
-      "status": "total",
+      "status": "progress",
       "tasks": [
         {
-          "id": "7b347b43-3329-4388-81b9-f0bdb6ae6d38",
+          "id": "9049b533-19f3-4927-8c50-a58f8e792379",
           "text": "1",
+          "completed": true
+        },
+        {
+          "id": "642e42f2-9872-467b-a7e3-b7e1058ea5e3",
+          "text": "asd",
           "completed": false
         },
         {
-          "id": "61350c6d-9c28-463c-b1f1-e1e2ad5d9bad",
-          "text": "2",
-          "completed": false
-        },
-        {
-          "id": "e34a1296-8ca6-4699-ae4d-6994b6f33488",
-          "text": "3",
-          "completed": false
-        },
-        {
-          "id": "0b303899-ce8d-48af-87be-f9414dba390a",
-          "text": "4",
-          "completed": false
+          "id": "cdc8d803-f61a-48b8-88da-fba4f2d9eb09",
+          "text": "asd",
+          "completed": true
         }
       ]
     },

@@ -1,7 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import classes from "./TextareaTasks.module.scss";
 import cn from "classnames";
-import { usePatchDataMutation } from "../../../redux/projectsAPI";
+import { usePatchDataMutation } from "../../../redux/projectsApi";
+import { Tasks } from "../../../types/data";
+import { adjustHeight } from "../../../helpers/utils";
+
+interface IProps {
+  idTask: string;
+  allTasks: Tasks;
+  idProject: string;
+  taskText: string;
+  completedTask: boolean;
+  focusForEdit: boolean;
+  setFocusForEdit: Dispatch<SetStateAction<boolean>>;
+}
 
 export default function TextareaTasks({
   idTask,
@@ -11,25 +23,14 @@ export default function TextareaTasks({
   completedTask,
   focusForEdit,
   setFocusForEdit,
-}) {
+}: IProps) {
   const [changeFieldData] = usePatchDataMutation();
 
-  const textareaRef = useRef(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  const [inputTekst, setInputTekst] = useState(taskText);
-  useEffect(() => {
-    setInputTekst(taskText);
-  }, [allTasks]);
+  const [inputTekst, setInputTekst] = useState<string>(taskText);
 
-  const adjustHeight = () => {
-    const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = "auto"; // Сбрасываем высоту
-      textarea.style.height = `${textarea.scrollHeight}px`; // Устанавливаем высоту на основе содержимого
-    }
-  };
-
-  const handleBlur = (e) => {
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     setFocusForEdit(false);
     if (inputTekst.length < 1) {
       const filteredTasks = allTasks.filter((task) => task.id !== idTask);
@@ -53,21 +54,25 @@ export default function TextareaTasks({
     }
   };
 
-  const handleChange = (e) => {
-    adjustHeight();
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    adjustHeight(textareaRef.current);
     setInputTekst(e.target.value);
   };
 
   useEffect(() => {
-    adjustHeight();
+    setInputTekst(taskText);
+  }, [allTasks]);
+
+  useEffect(() => {
+    adjustHeight(textareaRef.current);
   }, []);
 
   useEffect(() => {
     const textarea = textareaRef.current;
     if (textarea) {
       focusForEdit ? textarea.focus() : textarea.blur();
+      textarea.setSelectionRange(textarea.value.length, textarea.value.length);
     }
-    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
   }, [focusForEdit]);
 
   return (
@@ -76,7 +81,6 @@ export default function TextareaTasks({
       className={cn(classes.task, {
         [classes.taskComplited]: completedTask,
       })}
-      type="text"
       onChange={handleChange}
       onFocus={(e) => setFocusForEdit(true)}
       onBlur={handleBlur}

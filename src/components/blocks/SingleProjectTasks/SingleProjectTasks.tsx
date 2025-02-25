@@ -7,6 +7,15 @@ import NotContent from "../NotContent/NotContent";
 import AddNewTask from "../AddNewTask/AddNewTask";
 import { useEffect, useState } from "react";
 import { usePatchDataMutation } from "../../../redux/projectsApi";
+import { Status, Tasks } from "../../../types/data";
+
+interface IProps {
+  statusProject: Status;
+  title: string;
+  projectTasks: Tasks;
+  idProject: string;
+  isLoading: boolean;
+}
 
 export default function SingleProjectTasks({
   statusProject,
@@ -14,15 +23,18 @@ export default function SingleProjectTasks({
   projectTasks = [],
   idProject,
   isLoading,
-}) {
+}: IProps) {
   const [changeData] = usePatchDataMutation();
 
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Tasks>([]);
 
   useEffect(() => {
-    const sortProjectTasks = [...projectTasks].sort(
-      (a, b) => a.completed - b.completed
-    );
+    const sortProjectTasks = [...projectTasks].sort((a, b) => {
+      if (a.completed === b.completed) return 0;
+
+      return a.completed ? 1 : -1;
+    });
+
     setTasks(sortProjectTasks);
   }, [projectTasks]);
 
@@ -56,18 +68,18 @@ export default function SingleProjectTasks({
         </div>
       </header>
 
-      {tasks?.length < 1 && isLoading != "loading" && (
+      {tasks?.length < 1 && !isLoading && (
         <NotContent right={10} text="Add new task" />
       )}
-      {projectTasks.length > 0 && (
+      {tasks.length > 0 && (
         <div className={classes.tasksWrapper}>
-          {projectTasks.map((item, index) => {
+          {tasks.map((item, index) => {
             return (
               <TaskItem
                 idTask={item.id}
                 key={index}
                 idProject={idProject}
-                allTasks={projectTasks}
+                allTasks={tasks}
                 taskText={item.text}
               />
             );

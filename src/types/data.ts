@@ -5,7 +5,7 @@ export type Status = "total" | "progress" | "completed" | "waiting";
 
 export type IdProject = string;
 
-interface ITasks {
+export interface ITasks {
   id: IdProject;
   text: string;
   completed: boolean;

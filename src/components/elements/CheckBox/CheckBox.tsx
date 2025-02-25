@@ -1,6 +1,19 @@
-import React from "react";
+import { CSSProperties, ReactNode } from "react";
 import classes from "./CheckBox.module.scss";
 import cn from "classnames";
+
+interface IProps {
+  icon?: ReactNode;
+  id?: string;
+  label?: string;
+  labelSize?: number;
+  labelColor?: string;
+  size?: number;
+  className?: string;
+  style?: CSSProperties;
+  checked: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export default function CheckBox({
   icon,
@@ -11,10 +24,10 @@ export default function CheckBox({
   size,
   className,
   style,
-  checked,
+  checked = false,
   onChange,
   ...props
-}) {
+}: IProps) {
   return (
     <label
       {...props}

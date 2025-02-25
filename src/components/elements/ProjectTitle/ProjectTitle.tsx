@@ -1,10 +1,10 @@
-import { IStatus } from "../../../types/data";
+import { Status } from "../../../types/data";
 import classes from "./ProjectTitle.module.scss";
 import cn from "classnames";
 
 interface IProps {
   children: string;
-  status: IStatus;
+  status: Status;
 }
 
 export default function ProjectTitle({
