@@ -1,16 +1,19 @@
-import { ForwardedRef, forwardRef } from "react";
+import { ForwardedRef, forwardRef, HTMLProps } from "react";
 import classes from "./InputAdd.module.scss";
 import cn from "classnames";
 import ErrorMesasge from "../ErrorMesasge/ErrorMesasge";
 
 interface IProps {
-  height: null | number;
-  className: string;
+  height?: null | number;
+  className?: string;
   label?: string;
-  onInput: (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  isTextarea: boolean;
-  placeholder: string;
-  hasError: boolean;
+  onInput?: (
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLFieldSetElement>) => void;
+  isTextarea?: boolean;
+  placeholder?: string;
+  hasError?: boolean;
   type?: "text" | "email" | "password";
 }
 
@@ -24,13 +27,13 @@ const InputAdd = function (
     isTextarea = false,
     placeholder,
     hasError,
-    ...props
+    onKeyDown,
   }: IProps,
   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>
 ) {
   return (
     <fieldset
-      {...props}
+      onKeyDown={onKeyDown}
       className={cn(classes.wrapper, className, {
         [classes.error]: hasError,
       })}

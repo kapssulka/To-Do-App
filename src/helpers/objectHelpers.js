@@ -10,7 +10,7 @@ export function createNewTask(taskValue, completed = false) {
   return obj;
 }
 
-export function createFormProjectData(title, description, tasks = []) {
+export function createProjectData(title, description, tasks = []) {
   const user = auth.currentUser;
 
   const obj = {
@@ -23,3 +23,14 @@ export function createFormProjectData(title, description, tasks = []) {
   };
   return obj;
 }
+
+export const createFormProjectData = (arrayInputsRef, title, description) => {
+  const filtredEmptyTasks = arrayInputsRef.filter((item) => item.value);
+
+  const tasks = filtredEmptyTasks.map((item, _) => {
+    const obj = createNewTask(item.value);
+    return obj;
+  });
+
+  return createProjectData(title, description, tasks);
+};

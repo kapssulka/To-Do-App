@@ -3,13 +3,13 @@ import classes from "./Title.module.scss";
 import cn from "classnames";
 
 interface IProps {
-  vatiant?: string;
+  variant?: string;
   children: ReactNode;
   className?: string;
 }
 
-export default function Title({ vatiant = "h1", children, className }: IProps) {
-  switch (vatiant) {
+export default function Title({ variant = "h1", children, className }: IProps) {
+  switch (variant) {
     case "h1":
       return <h1 className={cn(classes.h1, className)}>{children}</h1>;
       break;
